@@ -41,3 +41,15 @@ jobs:
             -Dsonar.language=java
             -Dsonar.java.binaries=.
             -Dsonar.qualitygate.wait=true
+
+      - name: Generate Sonar Report
+        if: always()
+        run: | 
+          curl -H "Authorization: Bearer ${{ secrets.SONAR_TOKEN }}" "https://sonarcloud.io/api/measures/component?componentKey=${{ secrets.SONAR_PROJECT }}&metricKeys=coverage,bugs,vulnerabilities" -o sonar-report.json
+
+      - name: Upload Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: sonar-analysis-report
+          path: sonar-report.json
