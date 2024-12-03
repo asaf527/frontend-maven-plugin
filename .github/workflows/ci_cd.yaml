@@ -71,6 +71,13 @@ jobs:
           args: --maven-aggregate-project --severity-threshold=critical --fail-on=all --json-file-output=sync-report.json
         continue-on-error: false
 
+      - name: Upload Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: Synk-analysis-report
+          path: sync-report.json
+
 
   dockerfile_with_docker_scout:
     runs-on: ubuntu-latest
