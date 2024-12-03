@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
+
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
@@ -41,7 +41,7 @@ jobs:
             -Dsonar.language=java
             -Dsonar.java.binaries=.
             -Dsonar.qualitygate.wait=true
-
+      
       - name: Generate Sonar Report
         if: always()
         run: | 
@@ -53,3 +53,20 @@ jobs:
         with:
           name: sonar-analysis-report
           path: sonar-report.json
+
+  run_snyk_analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Build with Maven
+        run: mvn clean package -DskipTests
+
+      - name: Snyk security analysis
+        uses: snyk/actions/maven@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --maven-aggregate-project --severity-threshold=critical --fail-on=all --json-file-output=sync-report.json
+        continue-on-error: false
