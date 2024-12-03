@@ -47,7 +47,11 @@ jobs:
       - name: Generate Sonar Report
         if: always()
         run: | 
-          curl -H "Authorization: Bearer ${{ secrets.SONAR_TOKEN }}" "https://sonarcloud.io/api/measures/component?componentKey=${{ secrets.SONAR_PROJECT }}&metricKeys=new_bugs, new_vulnerabilities, new_code_smells,bugs, vulnerabilities, code_smells, new_coverage, coverage,new_reliability_rating, reliability_rating, new_security_rating,security_rating, new_maintainability_rating, sqale_rating, lines, complexity" -o sonar-report.json
+          curl -H "Authorization: Bearer ${{ secrets.SONAR_TOKEN }}" \
+          "https://sonarcloud.io/api/measures/component?\
+          componentKey=${{ secrets.SONAR_PROJECT }}&\
+          metricKeys=coverage,bugs,vulnerabilities" \
+          -o sonar-report.json
 
       - name: Upload Report
         uses: actions/upload-artifact@v3
