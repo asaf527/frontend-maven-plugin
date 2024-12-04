@@ -2,7 +2,7 @@
    
 This project integrates a continuous integration (CI) pipeline with Static Code Analysis (SCA) and Static Application Security Testing (SAST) tools. The pipeline is written in GitHub Actions and uses SonarCloud, Snyk, and Docker Scout to ensure code quality and security.  
 
-![] (Pipeline.png)
+![screenshot](Pipeline.png)
 
 ## Recommendations for Using this Project  
       
