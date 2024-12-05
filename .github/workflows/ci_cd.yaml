@@ -2,11 +2,9 @@ name: Security Analysis
 
 on:
   push:
-    branches:
-      - master
+    branches: [ "master" ]
   pull_request:
-    branches:
-      - master
+    branches: [ "master" ]
 
 jobs:
   build_sonarcloud:
@@ -52,7 +50,7 @@ jobs:
           -o sonar-report.json
 
       - name: Upload Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: sonar-analysis-report
@@ -69,6 +67,16 @@ jobs:
       - name: Build with Maven
         run: mvn clean package -DskipTests
 
+      - name: Test
+        run: ls -la ~/target/
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'maven' 
+
       # Snyk security analysis and upload report
       - name: Snyk security analysis
         uses: snyk/actions/maven@master
@@ -79,7 +87,7 @@ jobs:
         continue-on-error: false
       
       - name: Upload Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: Synk-analysis-report

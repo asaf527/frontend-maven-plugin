@@ -13,7 +13,8 @@ This project integrates a continuous integration (CI) pipeline with Static Code 
 - We recommend using a secret scanner such as pre-commit. This tool can be configured with a set of rules to help developers avoid committing code with security vulnerabilities.
 - If security tools detects issues, it should prevent the merge of the Pull Request. (Continue-on-fail=FALSE)
 - Recommend to use environments: Production, Staging, Development. which not used in this project.
-  
+- Send an email if the build if fail to the relevant group.
+
 ### Docker  
    
 - We recommend using the latest, most updated "official" images for your Docker containers.  
