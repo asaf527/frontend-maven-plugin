@@ -75,7 +75,7 @@ jobs:
         run: mvn clean package -DskipTests
 
       - name: Test
-        run: ls -la target/*.jar
+        run: ls -la target/
 
       # Snyk security analysis and upload report
       - name: Snyk security analysis
