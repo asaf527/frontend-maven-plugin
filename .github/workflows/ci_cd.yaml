@@ -75,7 +75,10 @@ jobs:
         run: mvn clean package -DskipTests
 
       - name: Test
-        run: ls -la target/
+        run: |
+          ls -la 
+          ls -la frontend-plugin-core/target/*.jar
+          ls -la frontend-maven-plugin/target/*.jar
 
       # Snyk security analysis and upload report
       - name: Snyk security analysis
