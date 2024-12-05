@@ -64,21 +64,8 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          java-version: '11'
-          distribution: 'temurin'
-          cache: 'maven' 
-
       - name: Build with Maven
         run: mvn clean package -DskipTests
-
-      - name: Test
-        run: |
-          ls -la 
-          ls -la frontend-plugin-core/target/*.jar
-          ls -la frontend-maven-plugin/target/*.jar
 
       # Snyk security analysis and upload report
       - name: Snyk security analysis
