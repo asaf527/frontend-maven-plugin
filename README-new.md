@@ -1,6 +1,6 @@
 # Security Analysis CI Project with SCA and SAST Tools  
    
-This project integrates a continuous integration (CI) pipeline with Static Code Analysis (SCA) and Static Application Security Testing (SAST) tools. The pipeline is written in GitHub Actions and uses SonarCloud, Snyk, and Docker Scout to ensure code quality and security.  
+This project integrates a continuous integration (CI) pipeline with Software Composition Analysis (SCA) and Static Application Security Testing (SAST) tools. The pipeline is written in GitHub Actions and uses SonarCloud, Snyk, and Docker Scout to ensure code quality and security.  
 
 ![screenshot](Pipeline.png)
 
@@ -12,8 +12,8 @@ This project integrates a continuous integration (CI) pipeline with Static Code 
 - Developers are recommended to use an SCA add-on for their IDE or code editor. This allows potential issues to be addressed during the coding phase, before code is committed.     
 - We recommend using a secret scanner such as pre-commit. This tool can be configured with a set of rules to help developers avoid committing code with security vulnerabilities.
 - If security tools detects issues, it should prevent the merge of the Pull Request. (Continue-on-fail=FALSE)
-- Recommend to use environments: Production, Staging, Development. which not used in this project.
-- Send an email if the build if fail to the relevant group.
+- If the pipeline part of version release, recommend to use environments: Production, Staging, Development.
+- Implement notifications -> e.g: Send an email if the build failed.
 
 ### Docker  
    
