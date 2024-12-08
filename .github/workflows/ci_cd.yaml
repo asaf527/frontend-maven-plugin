@@ -114,5 +114,5 @@ jobs:
           DOCKER_SCOUT_HUB_USER: ${{ secrets.DOCKER_USERNAME }}
         run: |
           docker scout cves ${{ env.APP_NAME }}:${{ env.VERSION }} --output ./vulns.report
-          docker scout cves ${{ env.APP_NAME }}:${{ env.VERSION }} --only-severity critical --exit-code
+          docker scout cves ${{ env.APP_NAME }}:${{ env.VERSION }} --only-severity high --exit-code
           docker scout sbom --output ${{ env.APP_NAME }}.sbom ${{ env.APP_NAME }}:${{ env.VERSION }}
